@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "$rootProject.buildToolsVersion"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
  configurations.all {
         resolutionStrategy {
             force 'com.android.support:support-annotations:24.2.1'
@@ -10,8 +10,8 @@ android {
     }
     defaultConfig {
         applicationId "org.xwiki.android.authenticator"
-        minSdkVersion "$rootProject.minSdkVersion"
-        targetSdkVersion "$rootProject.targetSdkVersion"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 25
         versionName "0.3.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -30,8 +30,8 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile "com.android.support:appcompat-v7:24.2.1"
-    compile "com.android.support:design:24.2.1"
+    compile "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.supportLibraryVersion"
     //Square dependencies
     compile ("com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion") {
         // exclude Retrofit’s OkHttp peer-dependency module and define your own module import
@@ -45,7 +45,7 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.1.0'
     compile 'io.reactivex:rxjava:1.1.4'
     //Butter Knife
-    compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
     compile "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
     // For getting the from token in the process of sign up
     compile 'org.jsoup:jsoup:1.9.1'
